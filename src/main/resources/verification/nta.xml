@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE nta PUBLIC "-//Uppaal Team//DTD Flat System 1.1//EN" "http://www.it.uu.se/research/group/darts/uppaal/flat-1_1.dtd">
+
+<nta>
+  <declaration>chan a; chan b; chan c;</declaration>
+  <template>
+    <name>A</name>
+    <declaration>clock x;</declaration>
+    <location id="A1">
+      <name>s1</name>
+    </location>
+    <location id="A2">
+      <name>s2</name>
+    </location>
+    <init ref="A1"/>
+    <transition>
+      <source ref="A1"/>
+      <target ref="A1"/>
+      <label kind="synchronisation">a!</label>
+      <label kind="guard">x &gt;=0 &amp;&amp; x&lt;3</label>
+      <label kind="assignment">x:=0</label>
+    </transition>
+    <transition>
+      <source ref="A1"/>
+      <target ref="A2"/>
+      <label kind="synchronisation">b!</label>
+      <label kind="guard">x &gt;=0 &amp;&amp; x&lt;50</label>
+      <label kind="assignment"></label>
+    </transition>
+    <transition>
+      <source ref="A2"/>
+      <target ref="A1"/>
+      <label kind="synchronisation">c!</label>
+      <label kind="guard">x &gt;=0 &amp;&amp; x&lt;10000</label>
+      <label kind="assignment">x:=0</label>
+    </transition>
+  </template>
+  <template>
+    <name>assume</name>
+    <declaration>clock x;</declaration>
+    <location id="assume1">
+      <name>sassume01</name>
+    </location>
+    <location id="assume2">
+      <name>sassume11</name>
+    </location>
+    <location id="assume3">
+      <name>sassume21</name>
+    </location>
+    <location id="assume4">
+      <name>sassume31</name>
+    </location>
+    <init ref="assume2"/>
+    <transition>
+      <source ref="assume1"/>
+      <target ref="assume1"/>
+      <label kind="synchronisation">a?</label>
+      <label kind="guard">x &gt;=0 &amp;&amp; x&lt;=100000</label>
+      <label kind="assignment">x:=0</label>
+    </transition>
+    <transition>
+      <source ref="assume1"/>
+      <target ref="assume1"/>
+      <label kind="synchronisation">b?</label>
+      <label kind="guard">x &gt;=0 &amp;&amp; x&lt;=100000</label>
+      <label kind="assignment"></label>
+    </transition>
+    <transition>
+      <source ref="assume1"/>
+      <target ref="assume1"/>
+      <label kind="synchronisation">c?</label>
+      <label kind="guard">x &gt;=0 &amp;&amp; x&lt;=100000</label>
+      <label kind="assignment">x:=0</label>
+    </transition>
+    <transition>
+      <source ref="assume2"/>
+      <target ref="assume2"/>
+      <label kind="synchronisation">a?</label>
+      <label kind="guard">x &gt;=0 &amp;&amp; x&lt;=100000</label>
+      <label kind="assignment">x:=0</label>
+    </transition>
+    <transition>
+      <source ref="assume2"/>
+      <target ref="assume4"/>
+      <label kind="synchronisation">b?</label>
+      <label kind="guard">x &gt;=0 &amp;&amp; x&lt;10000</label>
+      <label kind="assignment"></label>
+    </transition>
+    <transition>
+      <source ref="assume2"/>
+      <target ref="assume3"/>
+      <label kind="synchronisation">b?</label>
+      <label kind="guard">x &gt;=10000 &amp;&amp; x&lt;=100000</label>
+      <label kind="assignment"></label>
+    </transition>
+    <transition>
+      <source ref="assume2"/>
+      <target ref="assume1"/>
+      <label kind="synchronisation">c?</label>
+      <label kind="guard">x &gt;=0 &amp;&amp; x&lt;=100000</label>
+      <label kind="assignment">x:=0</label>
+    </transition>
+    <transition>
+      <source ref="assume3"/>
+      <target ref="assume4"/>
+      <label kind="synchronisation">a?</label>
+      <label kind="guard">x &gt;=0 &amp;&amp; x&lt;=100000</label>
+      <label kind="assignment">x:=0</label>
+    </transition>
+    <transition>
+      <source ref="assume3"/>
+      <target ref="assume4"/>
+      <label kind="synchronisation">b?</label>
+      <label kind="guard">x &gt;=0 &amp;&amp; x&lt;10000</label>
+      <label kind="assignment"></label>
+    </transition>
+    <transition>
+      <source ref="assume3"/>
+      <target ref="assume3"/>
+      <label kind="synchronisation">b?</label>
+      <label kind="guard">x &gt;=10000 &amp;&amp; x&lt;=100000</label>
+      <label kind="assignment"></label>
+    </transition>
+    <transition>
+      <source ref="assume3"/>
+      <target ref="assume4"/>
+      <label kind="synchronisation">c?</label>
+      <label kind="guard">x &gt;=0 &amp;&amp; x&lt;10000</label>
+      <label kind="assignment">x:=0</label>
+    </transition>
+    <transition>
+      <source ref="assume3"/>
+      <target ref="assume1"/>
+      <label kind="synchronisation">c?</label>
+      <label kind="guard">x &gt;=10000 &amp;&amp; x&lt;=100000</label>
+      <label kind="assignment">x:=0</label>
+    </transition>
+    <transition>
+      <source ref="assume4"/>
+      <target ref="assume4"/>
+      <label kind="synchronisation">a?</label>
+      <label kind="guard">x &gt;=0 &amp;&amp; x&lt;=100000</label>
+      <label kind="assignment">x:=0</label>
+    </transition>
+    <transition>
+      <source ref="assume4"/>
+      <target ref="assume4"/>
+      <label kind="synchronisation">b?</label>
+      <label kind="guard">x &gt;=0 &amp;&amp; x&lt;=100000</label>
+      <label kind="assignment"></label>
+    </transition>
+    <transition>
+      <source ref="assume4"/>
+      <target ref="assume4"/>
+      <label kind="synchronisation">c?</label>
+      <label kind="guard">x &gt;=0 &amp;&amp; x&lt;=100000</label>
+      <label kind="assignment">x:=0</label>
+    </transition>
+  </template>
+  <system>system A, assume;</system>
+</nta>
