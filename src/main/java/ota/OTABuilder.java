@@ -123,6 +123,7 @@ public class OTABuilder {
                         TimeGuard guard = new TimeGuard(false,false,0,TimeGuard.MAX_TIME);
                         Transition t = new Transition(l,sink,guard,resetMap.get(action),action);
                         transitionList0.add(t);
+                        continue;
                     }
                 }
                 sortTran(transitionList);
