@@ -119,7 +119,11 @@ public class OTABuilder {
             for(String action: copy.getSigma()){
                 List<Transition> transitionList = ota.getTransitions(l,action,null);
                 if(transitionList.isEmpty()){
-                    continue;
+                    if(transitionList.isEmpty()){
+                        TimeGuard guard = new TimeGuard(false,false,0,TimeGuard.MAX_TIME);
+                        Transition t = new Transition(l,sink,guard,resetMap.get(action),action);
+                        transitionList0.add(t);
+                    }
                 }
                 sortTran(transitionList);
                 Transition t0 = transitionList.get(0);
